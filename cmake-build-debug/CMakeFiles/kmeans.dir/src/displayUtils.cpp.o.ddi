@@ -1,0 +1,11 @@
+{
+"rules": [
+{
+"primary-output": "CMakeFiles/kmeans.dir/src/displayUtils.cpp.o",
+"requires": [
+]
+}
+],
+"version": 0,
+"revision": 0
+}

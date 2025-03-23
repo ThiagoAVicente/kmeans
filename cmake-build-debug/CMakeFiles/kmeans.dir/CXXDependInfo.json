@@ -1,0 +1,18 @@
+{
+	"bmi-installation" : null,
+	"compiler-frontend-variant" : "GNU",
+	"compiler-id" : "GNU",
+	"compiler-simulate-id" : "",
+	"config" : "Debug",
+	"cxx-modules" : {},
+	"dir-cur-bld" : "/home/vcnt/Documents/codes/kmeans/cmake-build-debug",
+	"dir-cur-src" : "/home/vcnt/Documents/codes/kmeans",
+	"dir-top-bld" : "/home/vcnt/Documents/codes/kmeans/cmake-build-debug",
+	"dir-top-src" : "/home/vcnt/Documents/codes/kmeans",
+	"exports" : [],
+	"forward-modules-from-target-dirs" : [],
+	"include-dirs" : [],
+	"language" : "CXX",
+	"linked-target-dirs" : [],
+	"module-dir" : "/home/vcnt/Documents/codes/kmeans/cmake-build-debug/CMakeFiles/kmeans.dir"
+}

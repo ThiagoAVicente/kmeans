@@ -1,0 +1,160 @@
+Cluster 0: 
+Testify; The Battle Of Los Angeles; ['Rage Against The Machine']; 
+Burden Of The Angel/Beast; Dart To The Heart; ['Bruce Cockburn']; 
+Rosa's Coronas; Rosaryville; ['Kate Campbell']; 
+In My Mother's House; Rosaryville; ['Kate Campbell']; 
+Check; Waste Of Mind; ['zebrahead']; 
+
+Cluster 1: 
+Guerrilla Radio; The Battle Of Los Angeles; ['Rage Against The Machine']; 
+Porcelain Blue; Rosaryville; ['Kate Campbell']; 
+
+Cluster 2: 
+Calm Like a Bomb; The Battle Of Los Angeles; ['Rage Against The Machine']; 
+Someone I Used To Love; Dart To The Heart; ['Bruce Cockburn']; 
+Tie Me At The Crossroads; Dart To The Heart; ['Bruce Cockburn']; 
+wampum prayer; Scarlet's Walk; ['Tori Amos']; 
+
+Cluster 3: 
+Mic Check; The Battle Of Los Angeles; ['Rage Against The Machine']; 
+Virginia; Scarlet's Walk; ['Tori Amos']; 
+America; New Life Faded; ['Death & Desire']; 
+Give; New Life Faded; ['Death & Desire']; 
+
+Cluster 4: 
+Sleep Now In the Fire; The Battle Of Los Angeles; ['Rage Against The Machine']; 
+
+Cluster 5: 
+Born of a Broken Man; The Battle Of Los Angeles; ['Rage Against The Machine']; 
+
+Cluster 6: 
+Born As Ghosts; The Battle Of Los Angeles; ['Rage Against The Machine']; 
+don't make me come to Vegas; Scarlet's Walk; ['Tori Amos']; 
+
+Cluster 7: 
+Maria; The Battle Of Los Angeles; ['Rage Against The Machine']; 
+
+Cluster 8: 
+Voice of the Voiceless; The Battle Of Los Angeles; ['Rage Against The Machine']; 
+Gold Dust; Scarlet's Walk; ['Tori Amos']; 
+
+Cluster 9: 
+New Millennium Homes; The Battle Of Los Angeles; ['Rage Against The Machine']; 
+Southland Of The Heart; Dart To The Heart; ['Bruce Cockburn']; 
+
+Cluster 10: 
+Ashes In the Fall; The Battle Of Los Angeles; ['Rage Against The Machine']; 
+Your Game; Fridays Child; ['Will Young']; 
+A Sorta Fairytale; Scarlet's Walk; ['Tori Amos']; 
+
+Cluster 11: 
+War Within a Breath; The Battle Of Los Angeles; ['Rage Against The Machine']; 
+She Got Me Bad; Do It for Love; ['Daryl Hall & John Oates']; 
+Sweet Sangria; Scarlet's Walk; ['Tori Amos']; 
+Hollywood; New Life Faded; ['Death & Desire']; 
+Desperate; New Life Faded; ['Death & Desire']; 
+
+Cluster 12: 
+Bombtrack; Rage Against The Machine; ['Rage Against The Machine']; 
+
+Cluster 13: 
+Killing In the Name; Rage Against The Machine; ['Rage Against The Machine']; 
+Leave Right Now; Fridays Child; ['Will Young']; 
+Closer to the Light; Dart To The Heart; ['Bruce Cockburn']; 
+Scarlet's Walk; Scarlet's Walk; ['Tori Amos']; 
+Fade to Blue; Rosaryville; ['Kate Campbell']; 
+
+Cluster 14: 
+Take the Power Back; Rage Against The Machine; ['Rage Against The Machine']; 
+Something About You; Do It for Love; ['Daryl Hall & John Oates']; 
+Listen For The Laugh; Dart To The Heart; ['Bruce Cockburn']; 
+Crazy; Scarlet's Walk; ['Tori Amos']; 
+
+Cluster 15: 
+Settle for Nothing; Rage Against The Machine; ['Rage Against The Machine']; 
+Tired of Waiting; New Life Faded; ['Death & Desire']; 
+
+Cluster 16: 
+Bullet In the Head; Rage Against The Machine; ['Rage Against The Machine']; 
+
+Cluster 17: 
+Know Your Enemy; Rage Against The Machine; ['Rage Against The Machine']; 
+Breath of Your Life; Do It for Love; ['Daryl Hall & John Oates']; 
+Your Cloud; Scarlet's Walk; ['Tori Amos']; 
+Another Girl's Paradise; Scarlet's Walk; ['Tori Amos']; 
+The Real Me; Waste Of Mind; ['zebrahead']; 
+
+Cluster 18: 
+Wake Up; Rage Against The Machine; ['Rage Against The Machine']; 
+Who Will Pray For Junior; Rosaryville; ['Kate Campbell']; 
+
+Cluster 19: 
+Fistful of Steel; Rage Against The Machine; ['Rage Against The Machine']; 
+Love The One You're With; Fridays Child; ['Will Young']; 
+Out Of My Mind; Fridays Child; ['Will Young']; 
+mrs. jesus; Scarlet's Walk; ['Tori Amos']; 
+Taxi Ride; Scarlet's Walk; ['Tori Amos']; 
+Look Away; Rosaryville; ['Kate Campbell']; 
+Waste of Mind; Waste Of Mind; ['zebrahead']; 
+
+Cluster 20: 
+Stronger; Fridays Child; ['Will Young']; 
+Free; Fridays Child; ['Will Young']; 
+Wednesday; Scarlet's Walk; ['Tori Amos']; 
+strange; Scarlet's Walk; ['Tori Amos']; 
+Ave Maria Grotto; Rosaryville; ['Kate Campbell']; 
+
+Cluster 21: 
+Freedom; Rage Against The Machine; ['Rage Against The Machine']; 
+Intuition; Do It for Love; ['Daryl Hall & John Oates']; 
+Going My Way; Fridays Child; ['Will Young']; 
+Sunrise On The Mississippi; Dart To The Heart; ['Bruce Cockburn']; 
+
+Cluster 22: 
+Man on a Mission; Do It for Love; ['Daryl Hall & John Oates']; 
+Love in a Dangerous Time; Do It for Love; ['Daryl Hall & John Oates']; 
+Rosaryville; Rosaryville; ['Kate Campbell']; 
+Pain; New Life Faded; ['Death & Desire']; 
+Feel This Way; Waste Of Mind; ['zebrahead']; 
+
+Cluster 23: 
+Do It for Love; Do It for Love; ['Daryl Hall & John Oates']; 
+Heartbreak Time; Do It for Love; ['Daryl Hall & John Oates']; 
+
+Cluster 24: 
+Township Rebellion; Rage Against The Machine; ['Rage Against The Machine']; 
+Someday We'll Know; Do It for Love; ['Daryl Hall & John Oates']; 
+All The Ways I Want You; Dart To The Heart; ['Bruce Cockburn']; 
+
+Cluster 25: 
+Forever for You; Do It for Love; ['Daryl Hall & John Oates']; 
+Love Loves You Too; Dart To The Heart; ['Bruce Cockburn']; 
+
+Cluster 26: 
+Life's Too Short; Do It for Love; ['Daryl Hall & John Oates']; 
+Love Is A Matter Of Distance; Fridays Child; ['Will Young']; 
+Very Kind; Fridays Child; ['Will Young']; 
+Pancake; Scarlet's Walk; ['Tori Amos']; 
+I Can't See New York; Scarlet's Walk; ['Tori Amos']; 
+Heart of Hearts; Rosaryville; ['Kate Campbell']; 
+Rosemary; Rosaryville; ['Kate Campbell']; 
+Someday; Waste Of Mind; ['zebrahead']; 
+
+Cluster 27: 
+Getaway Car; Do It for Love; ['Daryl Hall & John Oates']; 
+Amber Waves; Scarlet's Walk; ['Tori Amos']; 
+Carbon; Scarlet's Walk; ['Tori Amos']; 
+Get Back; Waste Of Mind; ['zebrahead']; 
+
+Cluster 28: 
+Make You Stay; Do It for Love; ['Daryl Hall & John Oates']; 
+Bone In My Ear; Dart To The Heart; ['Bruce Cockburn']; 
+Scanning These Crowds; Dart To The Heart; ['Bruce Cockburn']; 
+
+Cluster 29: 
+Miss DJ; Do It for Love; ['Daryl Hall & John Oates']; 
+Dance The Night Away; Fridays Child; ['Will Young']; 
+Friday's Child; Fridays Child; ['Will Young']; 
+Train In The Rain; Dart To The Heart; ['Bruce Cockburn']; 
+All I See; New Life Faded; ['Death & Desire']; 
+
