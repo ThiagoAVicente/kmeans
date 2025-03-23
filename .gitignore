@@ -2,6 +2,7 @@
 *.d
 *.idea
 *myenv
+build/
 cmake-build-debug
 
 # Compiled Object files

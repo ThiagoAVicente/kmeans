@@ -6,6 +6,7 @@
 #define KMEANS_H
 
 #include "Point.h"
+#include "ThreadPool.h"
 #include "vector"
 
 class Kmeans {
@@ -18,12 +19,12 @@ class Kmeans {
 
 public:
     Kmeans(int k, int dimensions, int max_iterations);
-    void fit(std::vector<Point>& points);
+    void fit(std::vector<Point> &points, ThreadPool &pool);
     [[nodiscard]] std::vector<Point> centers()const;
 
 private:
     [[nodiscard]] size_t findClosestCluster(const Point &point) const;
-    void updateCenters(const std::vector<Point>& points);
+    void updateCenters(const std::vector<Point> &points, ThreadPool &pool);
 };
 
 

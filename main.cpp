@@ -6,17 +6,17 @@
 #include "src/Kmeans.h"
 #include "src/Utils.h"
 
-#define LIMIT 100
+#define LIMIT (-1)
 #define MAX_ITERATIONS 1000
 // TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 int main() {
     int lines = 0;
-    constexpr int k = 30; // amount of clusters in kmeans
+    constexpr int k = 35; // amount of clusters in kmeans
 
     // read from file
     const auto data = Utils::processCsv("../data/tracks/cleaned_tracks_features.csv", lines, LIMIT);
-    std::cout << "Read "<<lines<<" lines."<<std::endl;
+    std::cout << std::format("Read {} lines.\n",lines);
 
     // get numeric fields
     const std::vector<std::string> numeric_fields = Utils::findNumericFields(data.at(0));
@@ -26,18 +26,17 @@ int main() {
     std::vector<Point> tracks;
     Utils::pointsFromMap(tracks,data,numeric_fields);
 
-    Kmeans km(k,dimensions,MAX_ITERATIONS);
-    km.fit(tracks);
+    // create thread pool
+    unsigned int num_threads = std::thread::hardware_concurrency();
+    std::cout << std::format("Created ThreadPool with {} threads.\n",num_threads);
+    ThreadPool pool(num_threads);
 
-    //std::cout << "Lonely clusters: ";
-    //const auto lonely = Utils::findLonelyClusters(tracks, k);
-    //Utils::displayVector(std::cout,lonely);
+    // fit tracks
+    std::cout << std::format("Executing k-means with {} clusters.\n",k);
+    Kmeans km(k,dimensions,MAX_ITERATIONS);
+    km.fit(tracks, pool);
 
     const auto result = Utils::groupByClusters(tracks);
-    //for ( const auto& [cluster_id, points_id] : result ) {
-    //    std::cout << std::format("Cluster {}: ",cluster_id);
-    //    Utils::displayVector(std::cout,points_id);
-    //}
 
     const std::vector<std::string> desired_fields = { "name", "album","artists"};
 

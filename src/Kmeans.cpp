@@ -5,8 +5,11 @@
 #include "Kmeans.h"
 
 #include <algorithm>
+#include <future>
 #include <stdexcept>
 #include <random>
+
+#include "ThreadPool.h"
 #include "Utils.h"
 
 Kmeans::Kmeans(const int k, const int dimensions, const int max_iterations) :
@@ -20,10 +23,9 @@ Kmeans::Kmeans(const int k, const int dimensions, const int max_iterations) :
 
 std::vector<Point> Kmeans::centers() const { return this->_centers; }
 
-void Kmeans::fit(std::vector<Point> &points) {
-
-    if ( ! Utils::validate(points,_point_dimensions) ) {
-        throw std::invalid_argument( "[ERROR] Points don't have an matching number of dimensions.");
+void Kmeans::fit(std::vector<Point> &points, ThreadPool& pool) {
+    if (!Utils::validate(points, _point_dimensions)) {
+        throw std::invalid_argument("[ERROR] Points don't have an matching number of dimensions.");
     }
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -33,29 +35,37 @@ void Kmeans::fit(std::vector<Point> &points) {
         _centers[i] = points[i];
     }
 
-    for ( int iter = 0; iter < _max_iterations; ++iter ) {
-        bool converged = true;
+    for (int iter = 0; iter < _max_iterations; ++iter) {
+        std::atomic<bool> converged = true;
+        std::vector<std::future<void>> futures;
 
-        // group all points
-        for ( auto& point : points ) {
-            const int closest_cluster = static_cast<int> ( findClosestCluster(point) );
+        // group using threads
+        const size_t batchSize = points.size() / pool.numThreads();
+        for (size_t start = 0; start < points.size(); start += batchSize) {
 
-            if ( closest_cluster == point.cluster() ) continue;
+            futures.push_back(pool.enqueue([this, &points, &converged, start, batchSize]() {
+                const size_t end = std::min(start + batchSize, points.size());
 
-            // closest cluster has changed
-            point.setCluster(closest_cluster);
-            converged = false;
-
+                for (size_t i = start; i < end; i++) {
+                    int closest_cluster = static_cast<int>(findClosestCluster(points[i]));
+                    if (closest_cluster != points[i].cluster()) {
+                        points[i].setCluster(closest_cluster);
+                        converged = false;
+                    }
+                }
+            }));
+        }
+        // Wait for all tasks to finish.
+        for (auto &future : futures) {
+            future.get();
         }
 
-        // move centers
-        updateCenters(points);
+        updateCenters(points, pool);
 
-        // nothing has changed so break
-        //if ( converged ) {
-        //    std::cout << "Finished earlier due to conversion. Total interactions : "<< iter+1 <<std::endl;
-        //    break;
-        //}
+        if (converged) {
+            std::cout << "Finished earlier due to convergence. Total iterations: " << iter + 1 << std::endl;
+            break;
+        }
     }
 }
 
@@ -78,7 +88,7 @@ size_t Kmeans::findClosestCluster(const Point &point) const {
     return closestCluster;
 }
 
-void Kmeans::updateCenters(const std::vector<Point> &points) {
+void Kmeans::updateCenters(const std::vector<Point> &points, ThreadPool &pool) {
     /*
      * move cluster centers to the mean between all the points
     */
@@ -87,39 +97,79 @@ void Kmeans::updateCenters(const std::vector<Point> &points) {
         throw std::invalid_argument( "[ERROR] Points don't have an matching number of dimensions.");
     }
 
-    std::vector<int> cluster_sizes(_k,0); // keep track of the amount of points near each center
-    std::vector<std::vector<double>> new_centers_coordinates(_k,std::vector<double>(_point_dimensions, 0.0));
-    std::vector<Point> new_centers(_k);
+    const size_t totalPoints = points.size();
+    const size_t numThreads = pool.numThreads();
+    const size_t batch_size = totalPoints / numThreads;
 
-    for ( auto& point : points ) {
-        const int cluster_id = point.cluster();
+    std::vector< std::future< std::pair<std::vector<int> ,std::vector<std::vector<double>>>>> futures;
 
-        // sum each coordinate
-        auto point_coordinates = point.cords();
-        for ( size_t i  = 0; i < _point_dimensions; ++i ) {
-            new_centers_coordinates[cluster_id][i] += point_coordinates[i];
-        }
+    //-- compute using batches and threads
+    for ( size_t start = 0; start < totalPoints; start+=batch_size ) {
+        futures.push_back( pool.enqueue(
+                [this,&points,start,batch_size,totalPoints]()->std::pair<std::vector<int>,std::vector<std::vector<double>>> {
 
-        // increment amount of point near this cluster
-        cluster_sizes[cluster_id]++;
+                    // need to save local data and return it with future
+                    std::vector<int> local_counts(_k, 0);
+                    std::vector<std::vector<double>> local_sums(_k, std::vector<double>(_point_dimensions, 0.0));
+
+
+                    const size_t end = std::min(start+batch_size, totalPoints);
+
+                    // iterate over the batch
+                    for ( size_t i = start; i < end; ++i ) {
+                        int cluster_id = points[i].cluster();
+                        const auto& point_coordinates = points[i].cords();
+
+                        // sum to local
+                        for ( size_t d = 0; d < _point_dimensions; ++d) {
+                            // sum to the correct dimension
+                            local_sums[cluster_id][d] += point_coordinates[d];
+                        }
+
+                        // increment counter
+                        local_counts[cluster_id]++;
+                    }
+                    return std::make_pair(local_counts,local_sums);
+            }));
 
     }
 
-    // update centers
+    //-- sum all local counts and sums
+    std::vector<int> cluster_counts(_k, 0);
+    std::vector<std::vector<double>> total_sums(_k, std::vector<double>(_point_dimensions, 0.0));
+    for ( auto& future: futures ) {
+        auto [partial_counts, partial_sums] = future.get();
+        for ( size_t cluster_id = 0; cluster_id < _k; ++ cluster_id) {
+
+            // update counter
+            cluster_counts[cluster_id] += partial_counts[cluster_id];
+
+            // update all coordinates sum
+            for ( size_t d = 0; d < _point_dimensions; ++d) {
+                total_sums[cluster_id][d] += partial_sums[cluster_id][d];
+            }
+        }
+    }
+
+
+    //-- update centers
+    std::vector<Point> new_centers(_k);
     for ( size_t cluster_id = 0; cluster_id < _k; ++cluster_id ) {
 
-        if ( cluster_sizes.at(cluster_id) == 0 ) {
-            // if there are no point nearby then don't move the point
+        if ( cluster_counts[cluster_id] == 0) {
+            // no point is near this center.
+            // keep its position
             new_centers[cluster_id] = _centers[cluster_id];
             continue;
         }
 
-        // move the point to the mean coordinate
-        for ( size_t i = 0 ; i < _point_dimensions; ++i ) {
-            new_centers_coordinates[cluster_id][i] /= cluster_sizes[cluster_id];
+        // compute the average of the coordinates
+        for ( size_t d = 0 ; d < _point_dimensions; ++d) {
+            total_sums[cluster_id][d] /=cluster_counts[cluster_id];
         }
-        new_centers[cluster_id] = Point(new_centers_coordinates[cluster_id]);
 
+        // create
+        new_centers[cluster_id] = Point(total_sums[cluster_id]);
     }
 
     // update centers

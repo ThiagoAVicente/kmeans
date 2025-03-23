@@ -10,5 +10,7 @@ add_executable(kmeans main.cpp
         src/Point.h
         src/Utils.cpp
         src/Utils.h
+        src/ThreadPool.cpp
+        src/ThreadPool.h
 )
 
