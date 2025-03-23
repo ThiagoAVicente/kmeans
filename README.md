@@ -19,7 +19,7 @@ The ThreadPool increased by far the performance of the execution with a large am
 
 ##  *How to run*
 To build and run the project:
-```
+```bash
 git clone git@github.com:ThiagoAVicente/kmeans.git
 cd kmeans
 mkdir build
