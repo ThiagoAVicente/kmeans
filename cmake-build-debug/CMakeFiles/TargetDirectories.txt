@@ -1,0 +1,3 @@
+/home/vcnt/Documents/codes/kmeans/cmake-build-debug/CMakeFiles/kmeans.dir
+/home/vcnt/Documents/codes/kmeans/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/vcnt/Documents/codes/kmeans/cmake-build-debug/CMakeFiles/rebuild_cache.dir
