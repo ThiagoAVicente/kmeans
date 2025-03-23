@@ -4,6 +4,7 @@
 *myenv
 build/
 cmake-build-debug
+tracks_features.csv
 
 # Compiled Object files
 *.slo
