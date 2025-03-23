@@ -52,10 +52,10 @@ void Kmeans::fit(std::vector<Point> &points) {
         updateCenters(points);
 
         // nothing has changed so break
-        if ( converged ) {
-            std::cout << "Finished earlier due to conversion. Total interactions : "<< iter+1 <<std::endl;
-            break;
-        }
+        //if ( converged ) {
+        //    std::cout << "Finished earlier due to conversion. Total interactions : "<< iter+1 <<std::endl;
+        //    break;
+        //}
     }
 }
 

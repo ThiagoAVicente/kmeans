@@ -6,13 +6,13 @@
 #include "src/Kmeans.h"
 #include "src/Utils.h"
 
-#define LIMIT 1000
+#define LIMIT 100000
 #define MAX_ITERATIONS 1000
 // TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 int main() {
     int lines = 0;
-    constexpr int k = 10; // amount of clusters in kmeans
+    constexpr int k = 30; // amount of clusters in kmeans
 
     // read from file
     const auto data = Utils::processCsv("../data/tracks/cleaned_tracks_features.csv", lines, LIMIT);
@@ -26,18 +26,18 @@ int main() {
     std::vector<Point> tracks;
     Utils::pointsFromMap(tracks,data,numeric_fields);
 
-    Kmeans km(10,dimensions,MAX_ITERATIONS);
+    Kmeans km(k,dimensions,MAX_ITERATIONS);
     km.fit(tracks);
 
-    std::cout << "Lonely clusters: ";
-    const auto lonely = Utils::findLonelyClusters(tracks, k);
-    Utils::displayVector(std::cout,lonely);
+    //std::cout << "Lonely clusters: ";
+    //const auto lonely = Utils::findLonelyClusters(tracks, k);
+    //Utils::displayVector(std::cout,lonely);
 
     const auto result = Utils::groupByClusters(tracks);
-    for ( const auto& [cluster_id, points_id] : result ) {
-        std::cout << std::format("Cluster {}: ",cluster_id);
-        Utils::displayVector(std::cout,points_id);
-    }
+    //for ( const auto& [cluster_id, points_id] : result ) {
+    //    std::cout << std::format("Cluster {}: ",cluster_id);
+    //    Utils::displayVector(std::cout,points_id);
+    //}
 
     const std::vector<std::string> desired_fields = { "name", "album","artists"};
 
