@@ -6,7 +6,7 @@
 #include "src/Kmeans.h"
 #include "src/Utils.h"
 
-#define LIMIT 100000
+#define LIMIT 100
 #define MAX_ITERATIONS 1000
 // TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.

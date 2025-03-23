@@ -84727,10 +84727,10 @@ public:
 
 int main() {
     int lines = 0;
-    constexpr int k = 10;
+    constexpr int k = 30;
 
 
-    const auto data = Utils::processCsv("../data/tracks/cleaned_tracks_features.csv", lines, 1000);
+    const auto data = Utils::processCsv("../data/tracks/cleaned_tracks_features.csv", lines, 100);
     std::cout << "Read "<<lines<<" lines."<<std::endl;
 
 
@@ -84741,18 +84741,18 @@ int main() {
     std::vector<Point> tracks;
     Utils::pointsFromMap(tracks,data,numeric_fields);
 
-    Kmeans km(10,dimensions,1000);
+    Kmeans km(k,dimensions,1000);
     km.fit(tracks);
 
-    std::cout << "Lonely clusters: ";
-    const auto lonely = Utils::findLonelyClusters(tracks, k);
-    Utils::displayVector(std::cout,lonely);
+
+
+
 
     const auto result = Utils::groupByClusters(tracks);
-    for ( const auto& [cluster_id, points_id] : result ) {
-        std::cout << std::format("Cluster {}: ",cluster_id);
-        Utils::displayVector(std::cout,points_id);
-    }
+
+
+
+
 
     const std::vector<std::string> desired_fields = { "name", "album","artists"};
 
