@@ -1,3 +1,4 @@
 data/tracks/tracks_features.csv filter=lfs diff=lfs merge=lfs -text
 data/tracks/cleaned_tracks_features.csv filter=lfs diff=lfs merge=lfs -text
+*.csv filter=lfs diff=lfs merge=lfs -text
 data/tracks/*.csv filter=lfs diff=lfs merge=lfs -text
