@@ -1,3 +1,0 @@
-/home/vcnt/Documents/codes/kmeans/build/CMakeFiles/kmeans.dir
-/home/vcnt/Documents/codes/kmeans/build/CMakeFiles/edit_cache.dir
-/home/vcnt/Documents/codes/kmeans/build/CMakeFiles/rebuild_cache.dir
